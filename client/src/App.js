@@ -6,6 +6,8 @@ import Signup from "../src/components/Signup/signup";
 import NoMatch from "../src/pages/NoMatch";
 import Home from "../src/components/Home/home";
 import Nav from "../src/components/Nav/nav";
+import Footer from "../src/components/Footer/footer";
+
 
 
 function App() {
@@ -22,8 +24,11 @@ function App() {
           <Route exact path="/search" component={Search} />
           <Route component={NoMatch} />
         </Switch>
+      <Footer />
     </Router>
   );
 }
 
 export default App;
+
+

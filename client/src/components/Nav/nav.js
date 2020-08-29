@@ -6,6 +6,15 @@ function Nav() {
         <a className="navbar-brand" href="/">
           Git-Pets!
         </a>
+        <a className="navbar-brand" href="/login">
+          Login
+        </a>
+        <a className="navbar-brand" href="/signup">
+          Sign Up
+        </a>
+        <a className="navbar-brand" href="/search">
+          Continue as Guest
+        </a>
       </nav>
     );
   }

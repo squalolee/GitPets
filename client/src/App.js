@@ -5,6 +5,7 @@ import Login from "../src/components/Login/login";
 import Signup from "../src/components/Signup/signup";
 import NoMatch from "../src/pages/NoMatch";
 import Home from "../src/components/Home/home";
+import Nav from "../src/components/Nav/nav";
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
       <div>
         <h1>Welcome to Git-Pets!</h1>
       </div>
-      <Switch>
+      <Nav />
+        <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />

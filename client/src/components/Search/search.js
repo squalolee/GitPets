@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./style.css";
 import Axios from "axios";
+import Table from "table"; 
 
 class Form extends Component {
   // Setting the component's initial state
@@ -67,7 +68,7 @@ class Form extends Component {
     if (this.state.searchResults) {
       return (
         <div>
-          <h1>results</h1>
+          <Table />
         </div>
       )
     }

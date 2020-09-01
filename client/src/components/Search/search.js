@@ -40,6 +40,8 @@ class Form extends Component {
         size: ""
     });
 
+    let state = this; 
+
     Axios.post("/api/", {
       pet: this.state.pet,
       breed: this.state.breed, 
@@ -50,7 +52,9 @@ class Form extends Component {
       size: this.state.size
     })
     .then(function(response) {
-      console.log(response);
+      state.setState({
+        searchResults: response.data.animals
+      })
     })
     .catch(function(error) {
       console.log(error);

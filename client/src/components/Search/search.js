@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
+import Axios from "axios";
 
 class Form extends Component {
   // Setting the component's initial state
@@ -38,69 +39,95 @@ class Form extends Component {
         age: "", 
         size: ""
     });
+
+    Axios.post("/api/", {
+      pet: this.state.pet,
+      breed: this.state.breed, 
+      location: this.state.location, 
+      range: this.state.range, 
+      gender: this.state.gender, 
+      age: this.state.age, 
+      size: this.state.size
+    })
+    .then(function(response) {
+      console.log(response);
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
   };
+
 
   render() {
     // Notice how each input has a `value`, `name`, and `onChange` prop
-    return (
-      <div>
-        <p>
-          Find your new best friend!
-        </p>
-        <form className="form">
-          <input
-            value={this.state.pet}
-            name="pet"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Pet"
-          />
-          <input
-            value={this.state.breed}
-            name="breed"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Breed"
-          />
-          <input
-            value={this.state.location}
-            name="location"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Location"
-          />
-          <input
-            value={this.state.range}
-            name="range"
-            onChange={this.handleInputChange}
-            type="number"
-            placeholder="Range"
-          />
-          <input
-            value={this.state.gender}
-            name="gender"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Gender"
-          />
-          <input
-            value={this.state.age}
-            name="age"
-            onChange={this.handleInputChange}
-            type="number"
-            placeholder="Age"
-          />
-          <input
-            value={this.state.size}
-            name="size"
-            onChange={this.handleInputChange}
-            type="text"
-            placeholder="Size"
-          />
-          <button onClick={this.handleFormSubmit}>Submit</button>
-        </form>
-      </div>
-    );
+    if (this.state.searchResults) {
+      return (
+        <div>
+          <h1>results</h1>
+        </div>
+      )
+    }
+    else {
+      return (
+        <div>
+          <p>
+            Find your new best friend!
+          </p>
+          <form className="form">
+            <input
+              value={this.state.pet}
+              name="pet"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="Pet"
+            />
+            <input
+              value={this.state.breed}
+              name="breed"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="Breed"
+            />
+            <input
+              value={this.state.location}
+              name="location"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="Location"
+            />
+            <input
+              value={this.state.range}
+              name="range"
+              onChange={this.handleInputChange}
+              type="number"
+              placeholder="Range"
+            />
+            <input
+              value={this.state.gender}
+              name="gender"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="Gender"
+            />
+            <input
+              value={this.state.age}
+              name="age"
+              onChange={this.handleInputChange}
+              type="number"
+              placeholder="Age"
+            />
+            <input
+              value={this.state.size}
+              name="size"
+              onChange={this.handleInputChange}
+              type="text"
+              placeholder="Size"
+            />
+            <button onClick={this.handleFormSubmit}>Submit</button>
+          </form>
+        </div>
+      );
+    }
   }
 }
 

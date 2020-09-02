@@ -1,7 +1,7 @@
 import React from "react";
 
 
-function Table() {
+function Table(props) {
     return (
         <div>
             <h1>Your Pets: </h1>
@@ -18,7 +18,21 @@ function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    {
+                        props.searchResults.map(result => {
+                            return (
+                                <tr>
+                                    <td>{result.type}</td>
+                                    <td>{result.breeds.primary}</td>
+                                    <td>{result.distance}</td>
+                                    <td>{result.gender}</td>
+                                    <td>{result.age}</td>
+                                    <td>{result.size}</td>
+                                    <td>{result.description}</td>
+                                </tr>
+                            );
+                        }) 
+                    }
                 </tbody>
 
             </table>

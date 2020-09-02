@@ -53,6 +53,7 @@ class Form extends Component {
       size: this.state.size
     })
     .then(function(response) {
+      console.log(response.data.animals);
       state.setState({
         searchResults: response.data.animals
       })
@@ -69,13 +70,8 @@ class Form extends Component {
       return (
         <div>
           <Table 
-            // pet={response.data.animals.type}
-            // breed={response.data.animals.breed}
-            // location={response.data.animals.location}
-            // gender={response.data.animals.gender}
-            // age={response.data.animals.age}
-            // size={response.data.animals}
-            // description={response.data.animals.description}
+            searchResults={this.state.searchResults}
+          
           />
         </div>
       )

@@ -15,7 +15,7 @@ module.exports = function (app) {
             }
             token = JSON.parse(stdout).access_token;
             console.log(token);
-            exec(`curl -H "Authorization: Bearer ${token}" GET https://api.petfinder.com/v2/animals?pet=${req.body.pet}&breed=${req.body.breed}&location=${req.body.location}&range=${req.body.range}&gender=${req.body.gender}&age=${req.body.age}&size=${req.body.size}`, (err, stdout, stderr) => {
+            exec(`curl -H "Authorization: Bearer ${token}" GET https://api.petfinder.com/v2/animals?type=${req.body.pet}&breed=${req.body.breed}&location=${req.body.location}&range=${req.body.range}&gender=${req.body.gender}&age=${req.body.age}&size=${req.body.size}`, (err, stdout, stderr) => {
                 if (err) {
                     console.log(err);
                     return;

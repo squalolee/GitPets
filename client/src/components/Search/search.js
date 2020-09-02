@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./style.css";
 import Axios from "axios";
-import Table from "table"; 
+import Table from "../Table/table"; 
 
 class Form extends Component {
   // Setting the component's initial state

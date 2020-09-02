@@ -14,6 +14,7 @@ function Table() {
                         <th scope="col">Gender</th>
                         <th scope="col">Age</th>
                         <th scope="col">Size</th>
+                        <th scope="col">More Info</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,22 +23,6 @@ function Table() {
                         <td>Mark</td>
                         <td>Otto</td>
                         <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
                         <td>@mdo</td>
                         <td>@mdo</td>
                     </tr>

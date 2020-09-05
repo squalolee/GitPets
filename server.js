@@ -9,6 +9,19 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//mongodb atlas
+//mLab no longer available, only other app is ObjectRocket which is not free
+//need to find a way to connect heroku app with mongo
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://napsche:${dbpassword}@gitpets2.dqoov.mongodb.net/gitpets?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+
 routes(app);
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

@@ -15,6 +15,9 @@ function Nav() {
         <a className="navbar-brand" href="/search">
           Continue as Guest
         </a>
+        <a className="navbar-brand" href="/forum">
+          Forum
+        </a>
       </nav>
     );
   }

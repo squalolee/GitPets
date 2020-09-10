@@ -3,7 +3,7 @@ const secret = process.env.secret;
 let token = '';
 const { exec } = require('child_process');
 const Signup = require('../models/signup');
-var signup = ""; 
+
 
 module.exports = function (app) {
 
@@ -33,14 +33,14 @@ module.exports = function (app) {
     app.post("/api/signup", function (req, res) {
         console.log("Signing up a new user");
         console.log(req.body);
-        res.send("get users");
+        // res.send("get users");
         signup = new Signup({
             firstname: req.body.firstname,
             lastname: req.body.lastname,  
             email: req.body.email, 
             password: req.body.password,
         })
-        post.save(function (err, signup) {
+        signup.save(function (err, signup) {
             console.log("the error is here");
             if (err) { return (err) }
             res.json(201, signup)

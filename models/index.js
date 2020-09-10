@@ -1,4 +1,5 @@
 module.exports = {
-    User: require("./user"),
-    Search: require("./search")
+    Signup: require("./signup"),
+    Search: require("./search"),
+    Forum: require("./forum")
 };

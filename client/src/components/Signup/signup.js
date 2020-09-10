@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import Axios from "axios";
 
 class Signup extends Component {
     state = {
@@ -26,7 +27,19 @@ class Signup extends Component {
             email: "", 
             password: ""
         });
+
+        Axios.post("/api/signup", {
+            firstname: this.state.firstname, 
+            lastname: this.state.lastname, 
+            email: this.state.email, 
+            password: this.state.password
+        })
+        .catch(function(error) {
+            console.log(error);
+        });
     };
+
+    
 
     render() {
         return (

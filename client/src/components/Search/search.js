@@ -43,7 +43,7 @@ class Form extends Component {
 
     let state = this; 
 
-    Axios.post("/api/", {
+    Axios.post("/api/search", {
       pet: this.state.pet,
       breed: this.state.breed, 
       location: this.state.location, 

@@ -47,6 +47,23 @@ module.exports = function (app) {
         })
     });
 
+    app.post("/api/forum", function (req, res) {
+        console.log("Creating a new blog post."); 
+        console.log(req.body); 
+        forum = new Forum({
+            name: req.body.name, 
+            posttitle: req.body.posttitle, 
+            postbody: req.body.postbody
+        })
+        .forum.save(function (err, forum) {
+            console.log("There's an error!"); 
+            if (err) { 
+                return (err)
+            }
+            res.json(201, forum)
+        })
+    });
+
 }
 
 // var User = require('mongoose').model('User');

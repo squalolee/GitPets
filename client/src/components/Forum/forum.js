@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Axios from "axios";
-// import Posts from "../../containers/Posts/index";
+
 
 class Forum extends Component {
     state = {
@@ -9,12 +9,15 @@ class Forum extends Component {
         postbody: ""
     };
 
+
     handleInputChange = event => {
         const { name, value } = event.target; 
 
         this.setState({
             [name]: value
         });
+
+        console.log("here");
     };
 
     handleFormSubmit = event => {
@@ -25,6 +28,10 @@ class Forum extends Component {
             posttitle: "", 
             postbody: ""
         }); 
+
+        console.log(`${this.state.name}`);
+        console.log(`${this.state.posttitle}`);
+        console.log(`${this.state.postbody}`);
 
         Axios.post("/api/forum", {
             name: this.state.name, 
@@ -63,7 +70,7 @@ class Forum extends Component {
                     type="text"
                     placeholder="Your post here!"
                     />
-                    <button onClick={this.state.handleFormSubmit}>Submit</button>
+                    <button onClick={this.handleFormSubmit}>Submit</button>
                 </form>
             </div>
         );

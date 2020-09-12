@@ -1,9 +1,12 @@
 import React from "react";
+// import Login from "../Login/login";
+// import Signup from "../Signup/signup";
+// import Search from "../Search/search";
 
 function Home() {
    return (
       <div>
-         <h1>What do you wanna do first</h1>
+         <h1>hi</h1>
       </div>
    );
 }

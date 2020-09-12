@@ -3,6 +3,7 @@ const secret = process.env.secret;
 let token = '';
 const { exec } = require('child_process');
 const Signup = require('../models/signup');
+const Forum = require("../models/forum");
 
 
 module.exports = function (app) {
@@ -55,7 +56,7 @@ module.exports = function (app) {
             posttitle: req.body.posttitle, 
             postbody: req.body.postbody
         })
-        .forum.save(function (err, forum) {
+        forum.save(function (err, forum) {
             console.log("There's an error!"); 
             if (err) { 
                 return (err)

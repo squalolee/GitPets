@@ -18,6 +18,9 @@ function Nav() {
         <a className="navbar-brand" href="/forum">
           Forum
         </a>
+        <a className="navbar-brand" href="/userPage">
+          Profile
+        </a>
       </nav>
     );
   }

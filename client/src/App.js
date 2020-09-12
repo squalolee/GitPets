@@ -7,6 +7,7 @@ import NoMatch from "../src/pages/NoMatch";
 import Home from "../src/components/Home/home";
 import Nav from "../src/components/Nav/nav";
 import Footer from "../src/components/Footer/footer";
+import Forum from "../src/components/Forum/forum";
 
 
 
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/search" component={Search} />
+          <Route exact path="/forum" component={Forum} />
           <Route component={NoMatch} />
         </Switch>
       <Footer />

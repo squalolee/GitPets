@@ -15,6 +15,7 @@ function Table(props) {
                         <th scope="col">Age</th>
                         <th scope="col">Size</th>
                         <th scope="col">More Info</th>
+                        {/* <th scope="col">Picture</th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -29,6 +30,7 @@ function Table(props) {
                                     <td>{result.age}</td>
                                     <td>{result.size}</td>
                                     <td>{result.description}</td>
+                                    {/* <td>{result.primary_photo_cropped.small}</td> */}
                                 </tr>
                             );
                         }) 

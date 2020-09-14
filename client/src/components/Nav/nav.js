@@ -18,7 +18,7 @@ function Nav() {
         <a className="navbar-brand" href="/forum">
           Forum
         </a>
-        <a className="navbar-brand" href="/userPage">
+        <a className="navbar-brand" href="/profile">
           Profile
         </a>
       </nav>

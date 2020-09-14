@@ -8,22 +8,17 @@ import Home from "../src/components/Home/home";
 import Footer from "../src/components/Footer/footer";
 import Forum from "../src/components/Forum/forum";
 import Profile from "./components/Profile/profile";
-import { Link } from 'react-router-dom'
-
-
+import { Link } from 'react-router-dom';
 
 function App() {
   return (
     <Router>
       <div>
-        <h1>Welcome to Git-Pets!</h1>
-        <button><Link to="/login">Login!</Link></button>
-        <button><Link to="/signup">Sign Up!</Link></button>
-        <button><Link to="/search">Continue as Guest!</Link></button>
+        <h1><Link to="/home">Welcome to Git-Pets!</Link></h1>
       </div>
       
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/search" component={Search} />

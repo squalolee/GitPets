@@ -5,6 +5,7 @@ const { exec } = require('child_process');
 const Signup = require('../models/signup');
 const Forum = require("../models/forum");
 const Profile = require("../models/profile");
+const Login = require("../models/login");
 
 module.exports = function (app) {
 
@@ -47,6 +48,12 @@ module.exports = function (app) {
             res.json(201, signup)
         })
     });
+
+    app.get("/api/login", function (req, res) {
+        res.renderer("login"); 
+        console.log("you are logged in"); 
+    })
+
 
     app.post("/api/forum", function (req, res) {
         console.log("Creating a new blog post."); 

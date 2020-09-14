@@ -5,7 +5,6 @@ import Login from "../src/components/Login/login";
 import Signup from "../src/components/Signup/signup";
 import NoMatch from "../src/pages/NoMatch";
 import Home from "../src/components/Home/home";
-// import Nav from "../src/components/Nav/nav";
 import Footer from "../src/components/Footer/footer";
 import Forum from "../src/components/Forum/forum";
 import Profile from "./components/Profile/profile";

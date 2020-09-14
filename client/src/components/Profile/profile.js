@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Axios from "axios";
+import Nav from "../Nav/nav";
 
 class Profile extends Component {
     state = {
@@ -49,6 +50,7 @@ class Profile extends Component {
             <p>
                 Your user page!
             </p>
+            <Nav />
             <form className="form">
                     <input
                         value={this.state.firstname}

@@ -9,12 +9,14 @@ import Footer from "../src/components/Footer/footer";
 import Forum from "../src/components/Forum/forum";
 import Profile from "./components/Profile/profile";
 import { Link } from 'react-router-dom';
+import Logo from "./logo.png"; 
 
 function App() {
   return (
     <Router>
       <div>
         <h1><Link to="/home">Welcome to Git-Pets!</Link></h1>
+        <img src={Logo}></img>
       </div>
       
         <Switch>

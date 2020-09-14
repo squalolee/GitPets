@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { Link } from 'react-router-dom'
 
 class Login extends Component {
     state = {
@@ -45,7 +46,7 @@ class Login extends Component {
                         type="password"
                         placeholder="Password"
                     />
-                    <button onClick={this.handleFormSubmit}>Submit</button>
+                    <button onClick={this.handleFormSubmit}><Link to ="/profile">Submit!</Link></button>
                 </form>
             </div>
         );

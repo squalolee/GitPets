@@ -42,7 +42,7 @@ module.exports = function (app) {
             password: req.body.password,
         })
         signup.save(function (err, signup) {
-            console.log("the error is here");
+            console.log("signup working");
             if (err) { return (err) }
             res.json(201, signup)
         })

@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Axios from "axios";
+import { Link } from 'react-router-dom'
 
 class Signup extends Component {
     state = {
@@ -76,7 +77,7 @@ class Signup extends Component {
                         type="password"
                         placeholder="Password"
                     />
-                    <button onClick={this.handleFormSubmit}>Submit</button>
+                    <button onClick={this.handleFormSubmit}><Link to ="/profile">Submit!</Link></button>
                 </form>
             </div>
         );
@@ -84,3 +85,4 @@ class Signup extends Component {
 }
 
 export default Signup; 
+

@@ -31,7 +31,7 @@ class Profile extends Component {
             useravatar: ""
         });
 
-        Axios.post("/api/profile", {
+        Axios.get("/api/profile", {
             firstname: this.state.firstname, 
             lastname: this.state.lastname, 
             email: this.state.email, 
@@ -48,7 +48,7 @@ class Profile extends Component {
         return (
             <div>
             <p>
-                Your user page!
+                Welcome to your user page!
             </p>
             <Nav />
             <form className="form">

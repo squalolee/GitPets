@@ -5,8 +5,8 @@ function Home() {
    return (
       <div>
          <button><Link to="/login">Login!</Link></button>
-        <button><Link to="/signup">Sign Up!</Link></button>
-        <button><Link to="/search">Continue as Guest!</Link></button>
+         <button><Link to="/signup">Sign Up!</Link></button>
+         <button><Link to="/search">Continue as Guest!</Link></button>
       </div>
    );
 }

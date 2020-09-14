@@ -26,6 +26,7 @@ function App() {
           <Route exact path="/search" component={Search} />
           <Route exact path="/forum" component={Forum} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/" component={Home} />
           <Route component={NoMatch} />
         </Switch>
       <Footer />

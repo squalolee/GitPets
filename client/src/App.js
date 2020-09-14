@@ -15,7 +15,7 @@ function App() {
   return (
     <Router>
       <div>
-        <h1><Link to="/home">Welcome to Git-Pets!</Link></h1>
+        <h1><Link to="/home">Git-Pets 2.0!</Link></h1>
         <img src={Logo}></img>
       </div>
       

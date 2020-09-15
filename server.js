@@ -3,6 +3,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes/apiRoutes");
 const path = require("path");
+const passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
+const session = require("express-session");
+const expressValidator = require('express-validator');
 const app = express();
 const PORT = process.env.PORT || 3001;
 // Define middleware here
@@ -21,8 +24,56 @@ client.connect(err => {
   client.close();
 });
 
+passport.use(new LocalStrategy(
+  function(email, password, done) {
+    User.findOne({ email: email }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+console.log(expressValidator); 
+
+passport.serializeUser(function(user, done) {
+  console.log("serializeUser"); 
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
 
 routes(app);
+
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      const namespace = param.split('.'),
+          root = namespace.shift(),
+          formParam = root;
+      while(namespace.length) {
+          formParam += '[' + namespace.shift() + ']';
+      }
+      return {
+          param: formParam,
+          msg: msg,
+          value: value
+      };
+  }
+}));
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));

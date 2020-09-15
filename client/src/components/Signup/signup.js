@@ -29,7 +29,7 @@ class Signup extends Component {
             password: ""
         });
 
-        Axios.post("/api/signup", {
+        Axios.post("/api/user", {
             firstname: this.state.firstname, 
             lastname: this.state.lastname, 
             email: this.state.email, 

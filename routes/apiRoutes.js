@@ -2,7 +2,7 @@ const key = process.env.key;
 const secret = process.env.secret;
 let token = '';
 const { exec } = require('child_process');
-const Signup = require('../models/signup');
+const User = require('../models/user');
 const Forum = require("../models/forum");
 const Profile = require("../models/profile");
 const Login = require("../models/login");
@@ -31,41 +31,78 @@ module.exports = function (app) {
 
     });
 
-    
-    app.post("/api/signup", function (req, res) {
+
+    app.post("/api/user", function (req, res) {
         console.log("Signing up a new user");
         console.log(req.body);
         // res.send("get users");
-        signup = new Signup({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,  
-            email: req.body.email, 
-            password: req.body.password,
-        })
-        signup.save(function (err, signup) {
-            console.log("signup working");
-            if (err) { return (err) }
-            res.json(201, signup)
-        })
+        // user = new User({
+        //     firstname: req.body.firstname,
+        //     lastname: req.body.lastname,  
+        //     email: req.body.email, 
+        //     password: req.body.password,
+        // })
+        // user.save(function (err, user) {
+        //     console.log("signup working");
+        //     if (err) { return (err) }
+        //     res.json(201, user)
+        // })
+        const firstname = req.body.firstname;
+        const lastname = req.body.lastname;
+        const email = req.body.email;
+        const password = req.body.password;
+        req.checkBody("firstname", "First name is required").notEmpty();
+        req.checkBody("lastname", "Last name is required").notEmpty();
+        req.checkBody("email", "Email is required").notEmpty();
+        req.checkBody("password", "Password is required").notEmpty();
+        req.checkBody("email", "Email is not valid").isEmail();
+
+
+        const errors = req.validationErrors();
+        if (errors) {
+            res.send("Did not work");
+        } else {
+            var newUser = new User({
+                firstname,
+                lastname,
+                email,
+                password
+            });
+            //can change getUserbyEmail throughout code (models/userjs too)
+            User.getUserByUsername(email, function (err, user) {
+                if (err) throw err;
+                if (!user) {
+                    User.createUser(newUser, function (err, user) {
+                        if (err) throw err;
+                        console.log(user);
+                    });
+                    // req.flash('success_msg', 'You are registered and can now log in');
+                    res.redirect('/api/login');
+                } else {
+                    // req.flash('error_msg', 'Email already exists');
+                    res.redirect('/api/user');
+                }
+            });
+        }
     });
 
     app.get("/api/login", function (req, res) {
-        res.renderer("login"); 
-        console.log("you are logged in"); 
-    })
+        res.renderer("login");
+        console.log("you are logged in");
+    });
 
 
     app.post("/api/forum", function (req, res) {
-        console.log("Creating a new blog post."); 
-        console.log(req.body); 
+        console.log("Creating a new blog post.");
+        console.log(req.body);
         forum = new Forum({
-            name: req.body.name, 
-            posttitle: req.body.posttitle, 
+            name: req.body.name,
+            posttitle: req.body.posttitle,
             postbody: req.body.postbody
         })
         forum.save(function (err, forum) {
-            console.log("There's an error!"); 
-            if (err) { 
+            console.log("There's an error!");
+            if (err) {
                 return (err)
             }
             res.json(201, forum)
@@ -77,8 +114,8 @@ module.exports = function (app) {
         console.log(req.body);
         profile = new Profile({
             firstname: req.body.firstname,
-            lastname: req.body.lastname,  
-            email: req.body.email, 
+            lastname: req.body.lastname,
+            email: req.body.email,
             password: req.body.password,
             useravatar: req.body.useravatar,
         })

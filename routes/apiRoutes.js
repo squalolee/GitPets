@@ -1,11 +1,46 @@
 const key = process.env.key;
 const secret = process.env.secret;
+
 let token = '';
 const { exec } = require('child_process');
 const User = require('../models/user');
 const Forum = require("../models/forum");
 const Profile = require("../models/profile");
 const Login = require("../models/login");
+const passport = require("passport");
+const LocalStrategy = require('passport-local').Strategy;
+
+passport.use(new LocalStrategy(
+    function (user, password, done) {
+        console.log("--------");
+        console.log(user, password);
+        User.getUserByUsername(user, function (err, user) {
+            if (err) throw err;
+            if (!user) {
+                console.log("no user"); 
+                return done(null, false, { message: 'Unknown User' });
+            }
+            User.comparePassword(password, user.password, function (err, isMatch) {
+                if (err) throw err;
+                if (isMatch) {
+                    console.log(user); 
+                    return done(null, user);
+                } else {
+                    console.log(password, user); 
+                    return done(null, false, { message: 'Invalid password' });
+                }
+            })
+        });
+    }));
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
+});
+passport.deserializeUser(function (id, done) {
+    User.getUserById(id, function (err, user) {
+        console.log(user); 
+        done(err, user);
+    });
+});
 
 module.exports = function (app) {
 
@@ -86,10 +121,24 @@ module.exports = function (app) {
         }
     });
 
-    app.get("/api/login", function (req, res) {
-        res.renderer("login");
-        console.log("you are logged in");
-    });
+    // app.get("/api/login", function (req, res) {
+    //     // res.renderer("login");
+    //     console.log("you are logged in");
+
+    // });
+
+    app.post("/api/login",
+
+        passport.authenticate('local', {
+            failureRedirect: '/failure'
+        }),
+        function (req, res) {
+            console.log("-------------:)");
+            // console.log(req); 
+            res.send('success');
+        });
+    // );
+
 
 
     app.post("/api/forum", function (req, res) {

@@ -33,6 +33,7 @@ function App() {
     </Router>
   );
 }
+//{withAuth(profile)} 
 
 export default App;
 

@@ -6,11 +6,14 @@ const path = require("path");
 const passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 const session = require("express-session");
 const expressValidator = require('express-validator');
+// const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3001;
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// app.use(express.bodyParser());
 
 //mongodb atlas
 //mLab no longer available, only other app is ObjectRocket which is not free
@@ -24,39 +27,24 @@ client.connect(err => {
   client.close();
 });
 
-passport.use(new LocalStrategy(
-  function(email, password, done) {
-    User.findOne({ email: email }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
+// passport.use(new LocalStrategy(
+//   function(email, password, done) {
+//     User.findOne({ email: email }, function (err, user) {
+//       if (err) { return done(err); }
+//       if (!user) {
+//         return done(null, false, { message: 'Incorrect username.' });
+//       }
+//       if (!user.validPassword(password)) {
+//         return done(null, false, { message: 'Incorrect password.' });
+//       }
+//       return done(null, user);
+//     });
+//   }
+// ));
 
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-console.log(expressValidator); 
-
-passport.serializeUser(function(user, done) {
-  console.log("serializeUser"); 
-  done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
-
-routes(app);
 
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {
@@ -73,6 +61,21 @@ app.use(expressValidator({
       };
   }
 }));
+ 
+
+// passport.serializeUser(function(user, done) {
+//   console.log("serializeUser"); 
+//   done(null, user.id);
+// });
+
+// passport.deserializeUser(function(id, done) {
+//   User.findById(id, function(err, user) {
+//     done(err, user);
+//   });
+// });
+
+routes(app);
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

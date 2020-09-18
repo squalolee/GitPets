@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./style.css";
 import Axios from "axios";
-import Table from "../Table/table"; 
+// import Table from "../Table/table"; 
+import ResultsCard from "../ResultsCard/resultscard"; 
 
 class Form extends Component {
   // Setting the component's initial state
@@ -30,7 +31,7 @@ class Form extends Component {
     event.preventDefault();
 
     // Alert the user their first and last name, clear `this.state.firstName` and `this.state.lastName`, clearing the inputs
-    alert(`Let's find a ${this.state.pet} for you!`);
+    
     this.setState({
         pet: "",
         breed: "", 
@@ -69,7 +70,7 @@ class Form extends Component {
     if (this.state.searchResults) {
       return (
         <div>
-          <Table 
+          <ResultsCard 
             searchResults={this.state.searchResults}
           
           />

@@ -32,5 +32,13 @@
   .card > .content > ul > li {
     margin-top: 18px;
   }
-  
+  .favoriteBtn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border-radius: 50%;
+    outline: none;
+    background-color: hsla(0,0%,100%,.75);
+    transition: background-color .15s;
+}
   

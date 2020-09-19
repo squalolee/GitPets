@@ -8,6 +8,7 @@ const Forum = require("../models/forum");
 const Profile = require("../models/profile");
 const Login = require("../models/login");
 const passport = require("passport");
+const ResultsCard = require('../models/resultscard');
 const LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
@@ -70,18 +71,7 @@ module.exports = function (app) {
     app.post("/api/user", function (req, res) {
         console.log("Signing up a new user");
         console.log(req.body);
-        // res.send("get users");
-        // user = new User({
-        //     firstname: req.body.firstname,
-        //     lastname: req.body.lastname,  
-        //     email: req.body.email, 
-        //     password: req.body.password,
-        // })
-        // user.save(function (err, user) {
-        //     console.log("signup working");
-        //     if (err) { return (err) }
-        //     res.json(201, user)
-        // })
+
         const firstname = req.body.firstname;
         const lastname = req.body.lastname;
         const email = req.body.email;
@@ -120,12 +110,6 @@ module.exports = function (app) {
             });
         }
     });
-
-    // app.get("/api/login", function (req, res) {
-    //     // res.renderer("login");
-    //     console.log("you are logged in");
-
-    // });
 
     app.post("/api/login",
 
@@ -175,28 +159,41 @@ module.exports = function (app) {
         })
     });
 
+    //to check if animal is already saved in database
+    //if/else statement
+    //if id already in database, then return to user ("already saved!")
+    //if id is not already in database, then continue with favorite.save to save that animal to db
+
+    app.post("/api/favorite", function (req, res) {
+        console.log("saving as new favorite!"); 
+        ResultsCard.findOne({ searchid: req.body.searchid }, function (err, result) {
+            console.log(result); 
+            if (!result) {
+                favorite = new ResultsCard({
+                    favorite: req.body.favorite, 
+                    searchid: req.body.searchid
+                })
+                favorite.save(function (err, favorite) {
+                    console.log("save"); 
+                    if (err) { return (err) }
+                    res.json(201, favorite)
+                })
+            }
+            else {
+                if (req.body.favorite === false) {
+                    ResultsCard.updateOne({ _id: result._id }, {favorite: false}, function (err, animal) {
+                        console.log(animal); 
+                        res.send("animal set to false"); 
+                    })
+                }
+                else {
+                    console.log(req.body); 
+                    //return results for initial render
+                }
+            }
+        }) 
+        
+    });
+
 }
 
-// var User = require('mongoose').model('User');
-// exports.create = function(req, res, next) {
-//     var user = new User(req.body);
-//     user.save(function(err) {
-//         if (err) {
-//             return next(err);
-//         } else {
-//             res.json(user);
-//         }
-//     });
-// };
-
-
-// app.post('/api/posts', function (req, res, next) {
-//   var post = new Post({
-//     username: req.body.username,
-//     body: req.body.body
-//   })
-//   post.save(function (err, post) {
-//     if (err) { return next(err) }
-//     res.json(201, post)
-//   })
-// })

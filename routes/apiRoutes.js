@@ -5,7 +5,7 @@ let token = '';
 const { exec } = require('child_process');
 const User = require('../models/user');
 const Forum = require("../models/forum");
-const Profile = require("../models/profile");
+// const Profile = require("../models/profile");
 const Login = require("../models/login");
 const passport = require("passport");
 const ResultsCard = require('../models/resultscard');
@@ -108,6 +108,8 @@ module.exports = function (app) {
                     res.redirect('/api/user');
                 }
             });
+
+            
         }
     });
 
@@ -145,18 +147,26 @@ module.exports = function (app) {
     app.post("/api/profile", function (req, res) {
         console.log("Editing user profile");
         console.log(req.body);
-        profile = new Profile({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            email: req.body.email,
-            password: req.body.password,
-            useravatar: req.body.useravatar,
-        })
-        profile.save(function (err, profile) {
-            console.log("the error is here");
-            if (err) { return (err) }
-            res.json(201, profile)
-        })
+        //update User info in profile
+        User.updateOne({ firstname: req.body.firstname, lastname: req.body.lastname, email: req.body.email, password: req.body.password }, function (err, user) {
+            console.log("updating user info"); 
+            res.send(user); 
+            if (err) {
+                console.log(err); 
+            }
+        });
+        // profile = new Profile({
+        //     firstname: req.body.firstname,
+        //     lastname: req.body.lastname,
+        //     email: req.body.email,
+        //     password: req.body.password,
+        //     useravatar: req.body.useravatar,
+        // })
+        // profile.save(function (err, profile) {
+        //     console.log("the error is here");
+        //     if (err) { return (err) }
+        //     res.json(201, profile)
+        // })
     });
 
     //to check if animal is already saved in database

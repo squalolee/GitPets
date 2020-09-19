@@ -13,6 +13,9 @@ function ResultsCard(props) {
                                 <div className="img-container">
                                     <img alt={result.name} src={result.primary_photo_cropped} />
                                 </div>
+                                <button className="favoriteBtn">
+                                    <img src="https://img.icons8.com/nolan/50/likes-folder.png"/>
+                                </button>
                                 <div className="content">
                                     <ul>
                                         <li>
@@ -20,6 +23,9 @@ function ResultsCard(props) {
                                         </li>
                                         <li>
                                             <strong>Age:</strong> {result.age}
+                                        </li>
+                                        <li>
+                                            <strong>Description:</strong> {result.description}
                                         </li>
                                     </ul>
                                 </div>

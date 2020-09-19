@@ -10,7 +10,7 @@
     "index.html": "/index.html",
     "precache-manifest.55066457e7829716f20a17a7717c9535.js": "/precache-manifest.55066457e7829716f20a17a7717c9535.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.8b4e82cd.chunk.css.map": "/static/css/main.8b4e82cd.chunk.css.map",
+    "static/css/main.26e0776f.chunk.css.map": "/static/css/main.26e0776f.chunk.css.map",
     "static/js/2.016c5ef6.chunk.js.LICENSE.txt": "/static/js/2.016c5ef6.chunk.js.LICENSE.txt",
     "static/media/logo.png": "/static/media/logo.079dd0dc.png"
   },
@@ -19,5 +19,6 @@
     "static/js/2.016c5ef6.chunk.js",
     "static/css/main.8b4e82cd.chunk.css",
     "static/js/main.65660dac.chunk.js"
+
   ]
 }

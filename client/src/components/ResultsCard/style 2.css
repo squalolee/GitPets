@@ -1,0 +1,44 @@
+.card {
+    background: #fff;
+    border-radius: 2px;
+    height: 300px;
+    margin: 1rem;
+    width: 300px;
+    box-shadow: 0 3px 6px #999, 0 3px 6px #999;
+    text-align: left;
+    float: left;
+  }
+  
+  .card > .img-container {
+    height: 60%;
+    overflow: hidden;
+    text-align: center;
+    background: lavender;
+  }
+  .card > .img-container > img {
+    width: 60%
+  }
+  
+  .card > .content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 15px;
+  }
+  
+  .card > .content > ul {
+    list-style-type: none;
+  }
+  
+  .card > .content > ul > li {
+    margin-top: 18px;
+  }
+  .favoriteBtn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border-radius: 50%;
+    outline: none;
+    background-color: hsla(0,0%,100%,.75);
+    transition: background-color .15s;
+}
+  

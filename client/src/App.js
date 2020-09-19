@@ -10,6 +10,7 @@ import Forum from "../src/components/Forum/forum";
 import Profile from "./components/Profile/profile";
 import { Link } from 'react-router-dom';
 import Logo from "./logo.png"; 
+import "./styles.css"
 
 function App() {
   return (

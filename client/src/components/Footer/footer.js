@@ -1,11 +1,14 @@
 import React from "react";
+import "./styles.css"
 
 function Footer() {
     return (
-      <div className="footer">
-        <a href="https://github.com/squalolee/GitPets" target="blank">
+      <div className="containter" id="footer">
+        <div className="card-body text-center">
+          <a className="card-text" href="https://github.com/squalolee/GitPets" target="blank">
           GitHub Repo
-        </a>
+          </a>
+        </div>
       </div>
     );
   }

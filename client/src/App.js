@@ -15,9 +15,11 @@ import "./styles.css"
 function App() {
   return (
     <Router>
-      <div>
+      <div className="jumbotron jumbotron-fluid" id="navbar">
+        <div classname="container">
         <h1><Link to="/home">Git-Pets 2.0!</Link></h1>
-        <img src={Logo}></img>
+        <img src={Logo} className="card-img-top"></img>
+        </div>
       </div>
       
         <Switch>

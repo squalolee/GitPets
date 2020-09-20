@@ -5,6 +5,7 @@ const routes = require("./routes/apiRoutes");
 const path = require("path");
 const passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 const session = require("express-session");
+const MongoStore = require('connect-mongo')(session)
 const expressValidator = require('express-validator');
 // const bodyParser = require('body-parser');
 const app = express();
@@ -42,9 +43,32 @@ client.connect(err => {
 //   }
 // ));
 
+//resave
+  //false will not resave to the session store unless modified
+    //modified=adding property to req.session or changing variable value
+
+//saveUninitialized
+  //uninitialized session is an unmodified one
+  //false, session won't be saved unless we modify it, won't sesnd id back to browser
+
+  //demo says to set both these values to false, but for us it makes more sense to be true?? 
+
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use( (req, res, next) => {
+  console.log('req.session', req.session); 
+  return next(); 
+}); 
+
+//should this be "/api/user?"
+app.post("/user", (req, res) => {
+  console.log('user signup');
+  //we use email instead of username
+  req.session.username = req.body.email; 
+  res.end()
+})
 
 app.use(expressValidator({
   errorFormatter: function(param, msg, value) {

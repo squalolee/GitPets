@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import "./style.css";
 import Axios from "axios";
 // import Table from "../Table/table"; 
-import ResultsCard from "../ResultsCard/resultscard"; 
+import ResultsCard from "../ResultsCard/resultscard";
+import Nav from "../Nav/nav"; 
 
 class Form extends Component {
   // Setting the component's initial state
@@ -70,6 +71,7 @@ class Form extends Component {
     if (this.state.searchResults) {
       return (
         <div>
+          <Nav />
           <ResultsCard 
             searchResults={this.state.searchResults}
           
@@ -80,6 +82,7 @@ class Form extends Component {
     else {
       return (
         <div>
+          <Nav />
           <p>
             Find your new best friend!
           </p>

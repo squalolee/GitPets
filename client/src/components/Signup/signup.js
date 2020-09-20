@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Axios from "axios";
-
+import { Redirect } from "react-router-dom"; 
 
 class Signup extends Component {
     state = {
@@ -21,13 +21,13 @@ class Signup extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
 
-        console.log('creating new user profile for ${this.state.firstname} $(this.state.lastname}.');
-        this.setState({
-            firstname: "",
-            lastname: "", 
-            email: "", 
-            password: ""
-        });
+        console.log("creating new user profile");
+        // this.setState({
+        //     firstname: "",
+        //     lastname: "", 
+        //     email: "", 
+        //     password: ""
+        // });
 
         Axios.post("/api/user", {
             firstname: this.state.firstname, 

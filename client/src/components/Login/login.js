@@ -49,26 +49,44 @@ render() {
         return <Redirect to="/profile" />
     }
     return (
-        <div>
-            <p>
+        <div className="center">
+            <h2>
                 Login to your account!
-                </p>
+            </h2>
             <form className="form">
-                <input
-                    value={this.state.email}
-                    name="email"
-                    onChange={this.handleInputChange}
-                    type="text"
-                    placeholder="Email"
-                />
-                <input
-                    value={this.state.password}
-                    name="password"
-                    onChange={this.handleInputChange}
-                    type="password"
-                    placeholder="Password"
-                />
-                <button onClick={this.handleFormSubmit}>Submit!</button>
+                <div className="form-group">
+                    <label for="exampleInputemail1">
+                        Email Address: 
+                    </label>
+                    <input
+                        value={this.state.email}
+                        name="email"
+                        onChange={this.handleInputChange}
+                        type="text"
+                        placeholder="Email"
+                    />
+                    <small id="emailHelp" class="form-text text-muted">
+                        We'll never share your email with anyone else.
+                    </small>
+                    
+                </div>
+
+                <div className="form-group">
+                    <label for="exampleInputPassword1">
+                        Password:
+                    </label>
+                    <input
+                        value={this.state.password}
+                        name="password"
+                        onChange={this.handleInputChange}
+                        type="password"
+                        placeholder="Password"
+                    />
+
+                </div>
+
+                <button type="submit" className="bt btn-primary" onClick={this.handleFormSubmit}>Submit!</button>
+              
             </form>
         </div>
     );

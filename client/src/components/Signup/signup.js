@@ -45,10 +45,12 @@ class Signup extends Component {
     render() {
         return (
             <div>
-                <p>
+                <h2>
                     Create an account!
-                </p>
+                </h2>
                 <form className="form">
+
+                    
                     <input
                         value={this.state.firstname}
                         name="firstname"

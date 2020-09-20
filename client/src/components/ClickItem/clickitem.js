@@ -38,7 +38,7 @@ class ClickItem extends Component {
             <div>
                 <div className="card item">
                     <div className="img-container">
-                        <img alt={this.props.result.name} src={this.props.result.primary_photo_cropped} />
+                        <img alt={this.props.result.name} src={this.props.result.photos.small} />
                     </div>
                     <button className="favoriteBtn" onClick={this.handleFavoriteClick} data-key={this.props.result.id}>
                         {

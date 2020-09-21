@@ -16,7 +16,7 @@ function App() {
   return (
     <Router>
       <header>
-        <h1 className="center"m><Link to="/home">Git-Pets 2.0!</Link></h1>
+        <h1 className="center"><Link to="/home">Git-Pets 2.0!</Link></h1>
       </header>
       <div className="jumbotron jumbotron-fluid" id="navbar">
         <div className="text-center">

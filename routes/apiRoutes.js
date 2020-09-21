@@ -103,9 +103,14 @@ module.exports = function (app) {
                     });
                     // req.flash('success_msg', 'You are registered and can now log in');
                     res.redirect('/api/login');
+                    // res.redirect('/api/profile');
+                    // res.send('success'); 
                 } else {
                     // req.flash('error_msg', 'Email already exists');
-                    res.redirect('/api/user');
+                    // res.redirect('/api/user');
+                    res.redirect('/api/profile');
+                    // res.redirect('/api/login');
+
                 }
             });
 
@@ -155,18 +160,6 @@ module.exports = function (app) {
                 console.log(err); 
             }
         });
-        // profile = new Profile({
-        //     firstname: req.body.firstname,
-        //     lastname: req.body.lastname,
-        //     email: req.body.email,
-        //     password: req.body.password,
-        //     useravatar: req.body.useravatar,
-        // })
-        // profile.save(function (err, profile) {
-        //     console.log("the error is here");
-        //     if (err) { return (err) }
-        //     res.json(201, profile)
-        // })
     });
 
     //to check if animal is already saved in database
@@ -186,7 +179,7 @@ module.exports = function (app) {
                 favorite.save(function (err, favorite) {
                     console.log("save"); 
                     if (err) { return (err) }
-                    res.json(201, favorite)
+                    res.status(status).json(obj);
                 })
             }
             else {

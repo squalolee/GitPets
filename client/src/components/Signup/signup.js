@@ -1,13 +1,15 @@
 import React, {Component} from "react";
 import Axios from "axios";
 import { Redirect } from "react-router-dom"; 
+// import Profile from "../Profile/profile";
 
 class Signup extends Component {
     state = {
         firstname: "", 
         lastname: "", 
         email: "",
-        password: ""
+        password: "",
+        signupSuccess: false
     };
 
     handleInputChange = event => {
@@ -35,6 +37,16 @@ class Signup extends Component {
             email: this.state.email, 
             password: this.state.password
         })
+        .then(function(response) {
+            console.log(response);
+            if (response.data === "success") {
+                this.setState({
+                    signupSuccess: true,
+                    redirect: "/profile"
+                  })
+            }
+           
+        })
         .catch(function(error) {
             console.log(error);
         });
@@ -43,6 +55,9 @@ class Signup extends Component {
     
 
     render() {
+        if (this.state.signupSuccess === true) {
+            return <Redirect to="/profile" />
+        }
         return (
             <div className="center">
                 <h2>

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import "./style.css";
 import Axios from "axios";
 // import Table from "../Table/table"; 
 import ResultsCard from "../ResultsCard/resultscard";
 import Nav from "../Nav/nav"; 
+// import { Redirect } from "react-router-dom"; 
 
 class Form extends Component {
   // Setting the component's initial state
@@ -14,7 +14,7 @@ class Form extends Component {
     range: "", 
     gender: "", 
     age: "", 
-    size: ""
+    size: "" 
   };
 
   handleInputChange = event => {
@@ -57,7 +57,8 @@ class Form extends Component {
     .then(function(response) {
       console.log(response.data.animals);
       state.setState({
-        searchResults: response.data.animals
+        searchResults: response.data.animals,
+        // redirect: "/resultscard"
       })
     })
     .catch(function(error) {
@@ -86,7 +87,73 @@ class Form extends Component {
           <h2>
             Find your new best friend!
           </h2>
-          <form className="form">
+          <form className="center">
+            <div className="col-auto">
+              <input
+               value={this.state.pet}
+               name="pet"
+               onChange={this.handleInputChange}
+               type="text"
+               placeholder="Pet"
+              />
+            </div>
+            <div className="col-auto">
+              <input
+               value={this.state.breed}
+               name="breed"
+               onChange={this.handleInputChange}
+               type="text"
+               placeholder="Breed"
+              />
+            </div>
+            <div className="col-auto">
+              <input
+               value={this.state.location}
+               name="location"
+               onChange={this.handleInputChange}
+               type="text"
+               placeholder="Location"
+              />
+            </div>
+            <div className="col-auto">
+              <input
+               value={this.state.range}
+               name="range"
+               onChange={this.handleInputChange}
+               type="number"
+               placeholder="Range"
+              />
+            </div>
+            <div className="col-auto">
+              <input
+                value={this.state.gender}
+                name="gender"
+                onChange={this.handleInputChange}
+                type="text"
+                placeholder="Gender"
+              />
+            </div>
+            <div className="col-auto">
+              <input
+                value={this.state.age}
+                name="age"
+                onChange={this.handleInputChange}
+                type="number"
+                placeholder="Age"
+              />
+            </div>
+            <div className="col-auto">
+              <input
+                 value={this.state.size}
+                 name="size"
+                 onChange={this.handleInputChange}
+                 type="text"
+                 placeholder="Size"
+              />
+            </div>
+            <button onClick={this.handleFormSubmit}>Submit</button>
+          </form>
+          {/* <form className="form">
             <input
               value={this.state.pet}
               name="pet"
@@ -137,7 +204,7 @@ class Form extends Component {
               placeholder="Size"
             />
             <button onClick={this.handleFormSubmit}>Submit</button>
-          </form>
+          </form> */}
         </div>
       );
     }

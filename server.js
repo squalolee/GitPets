@@ -62,7 +62,7 @@ app.use( (req, res, next) => {
   return next(); 
 }); 
 
-//should this be "/api/user?"
+
 app.post("/user", (req, res) => {
   console.log('user signup');
   //we use email instead of username
@@ -99,6 +99,7 @@ app.use(expressValidator({
 // });
 
 routes(app);
+// app.use(routes(app)); 
 
 
 // Serve up static assets (usually on heroku)

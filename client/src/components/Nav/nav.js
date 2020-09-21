@@ -1,15 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 function Nav() {
     return (
       <div className="container-fluid">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <button type="button" className="btn btn-primary center" href="/search" id="navButton">
+          <button type="button" className="btn btn-primary center" href="/search" id="navButton"><Link to='/search'>
             Search Animals
-          </button>
-          <button type="button" className="btn btn-primary center" href="/forum" id="navButton">
+          </Link></button>
+          <button type="button" className="btn btn-primary center" href="/forum" id="navButton"><Link to='forum'>
             Forum
-          </button>
+          </Link></button>
         </nav>
       </div>
     );

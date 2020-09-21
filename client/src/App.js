@@ -19,8 +19,8 @@ function App() {
         <h1 className="center"m><Link to="/home">Git-Pets 2.0!</Link></h1>
       </header>
       <div className="jumbotron jumbotron-fluid" id="navbar">
-        <div classname="container">
-          <img src={Logo} className="card-img-top"></img>
+        <div className="text-center">
+          <img src={Logo} className="img-fluid" alt="Responsive image"></img>
         </div>
       </div>
       

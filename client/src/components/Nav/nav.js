@@ -2,15 +2,16 @@ import React from "react";
 
 function Nav() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-       
-        <a className="navbar-brand" href="/search">
-          Search Animals
-        </a>
-        <a className="navbar-brand" href="/forum">
-          Forum
-        </a>
-      </nav>
+      <div className="container-fluid">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <button type="button" className="btn btn-primary center" href="/search" id="navButton">
+            Search Animals
+          </button>
+          <button type="button" className="btn btn-primary center" href="/forum" id="navButton">
+            Forum
+          </button>
+        </nav>
+      </div>
     );
   }
   

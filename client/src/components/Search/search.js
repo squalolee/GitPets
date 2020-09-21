@@ -83,9 +83,9 @@ class Form extends Component {
       return (
         <div>
           <Nav />
-          <p>
+          <h2>
             Find your new best friend!
-          </p>
+          </h2>
           <form className="form">
             <input
               value={this.state.pet}

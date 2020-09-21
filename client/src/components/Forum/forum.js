@@ -56,7 +56,7 @@ class Forum extends Component {
 
     render() {
         return (
-            <div>
+            <div className="center">
                 <Nav />
                 <h1>Welcome to the GitPets Blog!</h1>
                 <p>Post your adoption stories, ask questions, or leave us pictures of your furry friends!</p>

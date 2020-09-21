@@ -23,7 +23,7 @@ class Signup extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
 
-        console.log("creating new user profile");
+        console.log(this);
         // this.setState({
         //     firstname: "",
         //     lastname: "", 
@@ -37,9 +37,9 @@ class Signup extends Component {
             email: this.state.email, 
             password: this.state.password
         })
-        .then(function(response) {
-            console.log(response);
-            if (response.data === "success") {
+        .then((response) => {
+            console.log(this);
+            if (response.status === 200) {
                 this.setState({
                     signupSuccess: true,
                     redirect: "/profile"

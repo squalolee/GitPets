@@ -3,6 +3,7 @@ import Axios from "axios";
 // import Table from "../Table/table"; 
 import ResultsCard from "../ResultsCard/resultscard";
 import Nav from "../Nav/nav"; 
+import { Redirect } from "react-router-dom"; 
 
 class Form extends Component {
   // Setting the component's initial state
@@ -13,7 +14,7 @@ class Form extends Component {
     range: "", 
     gender: "", 
     age: "", 
-    size: ""
+    size: "" 
   };
 
   handleInputChange = event => {
@@ -56,7 +57,8 @@ class Form extends Component {
     .then(function(response) {
       console.log(response.data.animals);
       state.setState({
-        searchResults: response.data.animals
+        searchResults: response.data.animals,
+        redirect: "/resultscard"
       })
     })
     .catch(function(error) {

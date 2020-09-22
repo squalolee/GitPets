@@ -97,6 +97,11 @@ label {
     margin: 5px;
 }
 
+tbody {
+    background-color: #ffffff;
+    font: #2c3e50;
+}
+
 /* @media only screen and (max-width: 320px) {
 
     body { 

@@ -47,6 +47,10 @@ passport.deserializeUser(function (id, done) {
 
 module.exports = function (app) {
 
+    app.post("/api/catfacts", function (req, res) {
+        exec('curl -X --request GET "https://catfact.ninja/fact" -H "accept: application/json"');
+    });
+
     app.post("/api/search", function (req, res) {
         console.log("hi");
 

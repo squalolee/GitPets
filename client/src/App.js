@@ -10,6 +10,7 @@ import Forum from "../src/components/Forum/forum";
 import Profile from "./components/Profile/profile";
 import { Link } from 'react-router-dom';
 import Logo from "./logo.png"; 
+// import CatFacts from "./components/CatFacts/catfacts"; 
 import "./styles.css"
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
           <img src={Logo} className="img-fluid" alt="Responsive image"></img>
         </div>
       </div>
+      {/* <div className="footer">
+        <CatFacts />
+      </div> */}
       
         <Switch>
           <Route exact path="/home" component={Home} />
@@ -31,6 +35,7 @@ function App() {
           <Route exact path="/search" component={Search} />
           <Route exact path="/forum" component={Forum} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/catfacts" component={CatFacts} />
           <Route exact path="/" component={Home} />
           <Route component={NoMatch} />
         </Switch>

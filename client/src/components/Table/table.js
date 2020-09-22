@@ -20,7 +20,7 @@ function Table(props) {
                 </thead>
                 <tbody>
                     {
-                        props.searchResults.map(result => {
+                        props.data.map(result => {
                             return (
                                 <tr>
                                     <td>{result.type}</td>

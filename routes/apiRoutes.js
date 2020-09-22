@@ -9,6 +9,7 @@ const Forum = require("../models/forum");
 const Login = require("../models/login");
 const passport = require("passport");
 const ResultsCard = require('../models/resultscard');
+const { default: Axios } = require('axios');
 const LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
@@ -67,6 +68,27 @@ module.exports = function (app) {
 
     });
 
+    app.post("/api/profilesearch", function (req, res) {
+        exec(`curl -d "grant_type=client_credentials&client_id=${key}&client_secret=${secret}" https://api.petfinder.com/v2/oauth2/token`, (err, stdout, stderr) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            token = JSON.parse(stdout).access_token;
+            exec(`curl -H "Authorization: Bearer ${token}" GET https://api.petfinder.com/v2/animals/${req.body.searchid}`, (err, stdout, stderr) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                res.send(JSON.parse(stdout));
+            });
+        });    
+    });
+
+    app.get("/api/test", (req, res) => {
+        console.log("user information: ");
+        console.log(req.user); 
+    })
 
     app.post("/api/user", function (req, res) {
         console.log("Signing up a new user");
@@ -162,6 +184,15 @@ module.exports = function (app) {
         });
     });
 
+    app.get("/api/profile", (req,res) => {
+        console.log("-----------~~~~~~~~~~~~-------"); 
+        console.log(req.user._id); 
+        ResultsCard.find({ user: req.user._id }, (err, results) => {
+            console.log(results); 
+            res.send(results); 
+        })
+    })
+
     //to check if animal is already saved in database
     //if/else statement
     //if id already in database, then return to user ("already saved!")
@@ -174,12 +205,13 @@ module.exports = function (app) {
             if (!result) {
                 favorite = new ResultsCard({
                     favorite: req.body.favorite, 
-                    searchid: req.body.searchid
+                    searchid: req.body.searchid,
+                    user: req.user._id
                 })
                 favorite.save(function (err, favorite) {
                     console.log("save"); 
                     if (err) { return (err) }
-                    res.status(status).json(obj);
+                    res.send(favorite);
                 })
             }
             else {

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import Nav from "../Nav/nav";
+import Table from "../Table/table";
 
 class Profile extends Component {
     state = {
@@ -8,10 +9,52 @@ class Profile extends Component {
         lastname: "",
         email: "",
         password: "",
-        useravatar: ""
+        useravatar: "",
+        favoritePet: []
     };
 
+    //     let tempArr = this.state.favoritePet;
+    // tempArr.push(data.data[0]);
+    // this.setState({favoritePet: tempArr});
 
+    componentWillMount = () => {
+        Axios.get("/api/profile")
+            .then((data) => {
+                console.log(data.data);
+                data.data.map(search => {
+                    Axios.post("/api/profilesearch", {
+                        searchid: search.searchid
+                    })
+                        .then(response => {
+                            console.log(response);
+                            let tempArr = this.state.favoritePet;
+                            tempArr.push(response.data.animal);
+                            this.setState({ favoritePet: tempArr });
+                        })
+                })
+            })
+    }
+
+    componentDidMount = () => {
+        this.state.favoritePet && console.log(this.state.favoritePet); 
+    }
+
+    //testFunction = () => {
+    //     Axios.get("/api/profile")
+    //     .then((data) => {
+    //         console.log(data); 
+    //     })
+    // }
+
+    //axios.get to profile gets user id associated w/ that animal, searchid
+    //want to get searchid for favorited animals and info assoc w/ that searchid from the api
+    //need to display the info for those favorited aniamls to the user
+
+    // When the profile page loads, make an API request to /api/profile.
+    // /api/profile returns data on the resultsCards that are associated with the user.
+    // We should now sort through that returned data to request the information about the specific search ID's from the git pets api.
+    // Something like
+    // axios.get(`gitpetsapisomething.com?id=${data.data.searchId}`)
 
 
     handleInputChange = event => {
@@ -97,6 +140,12 @@ class Profile extends Component {
 
                     </form>
                 </div>
+                {
+                    this.state.favoritePet && 
+                    <Table 
+                        data={this.state.favoritePet}
+                    />
+                }
 
             </div>
         );

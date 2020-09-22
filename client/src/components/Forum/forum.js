@@ -20,6 +20,12 @@ class Forum extends Component {
         downvote: 0
     };
 
+    testFunction = () => {
+        Axios.get("/api/profile")
+        .then((data) => {
+            console.log(data); 
+        })
+    }
 
     handleInputChange = event => {
         const { name, value } = event.target; 
@@ -58,6 +64,7 @@ class Forum extends Component {
         return (
             <div className="center">
                 <Nav />
+                <button onClick={this.testFunction}>Test</button>
                 <h1>Welcome to the GitPets Blog!</h1>
                 <p>Post your adoption stories, ask questions, or leave us pictures of your furry friends!</p>
                 <form className="form">

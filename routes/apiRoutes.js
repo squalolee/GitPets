@@ -9,6 +9,8 @@ const Forum = require("../models/forum");
 const Login = require("../models/login");
 const passport = require("passport");
 const ResultsCard = require('../models/resultscard');
+const { default: Axios } = require('axios');
+const { Recoverable } = require('repl');
 const LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
@@ -55,10 +57,10 @@ module.exports = function (app) {
             }
             token = JSON.parse(stdout).access_token;
             console.log(token);
-            exec(`curl -H "Authorization: Bearer ${token}" GET https://api.petfinder.com/v2/animals?type=${req.body.pet}&breed=${req.body.breed}&location=${req.body.location}&range=${req.body.range}&gender=${req.body.gender}&age=${req.body.age}&size=${req.body.size}`, (err, stdout, stderr) => {
+            exec(`curl -H "Authorization: Bearer ${token}" GET https://api.petfinder.com/v2/animals?${req.body.pet && "type="+req.body.pet}${req.body.breed && "&breed="+req.body.breed}${req.body.location && "&location="+req.body.location}${req.body.range && "&range"+req.body.range}${req.body.gender && "&gender"+req.body.gender}${req.body.age && "&age"+req.body.age}${req.body.size && "&size"+req.body.size}`, (err, stdout, stderr) => {
                 if (err) {
                     console.log(err);
-                    return;
+                   
                 }
                 res.send(JSON.parse(stdout));
             });
@@ -67,6 +69,27 @@ module.exports = function (app) {
 
     });
 
+    app.post("/api/profilesearch", function (req, res) {
+        exec(`curl -d "grant_type=client_credentials&client_id=${key}&client_secret=${secret}" https://api.petfinder.com/v2/oauth2/token`, (err, stdout, stderr) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            token = JSON.parse(stdout).access_token;
+            exec(`curl -H "Authorization: Bearer ${token}" GET https://api.petfinder.com/v2/animals/${req.body.searchid}`, (err, stdout, stderr) => {
+                if (err) {
+                    console.log(err);
+                    
+                }
+                res.send(JSON.parse(stdout));
+            });
+        });    
+    });
+
+    app.get("/api/test", (req, res) => {
+        console.log("user information: ");
+        console.log(req.user); 
+    })
 
     app.post("/api/user", function (req, res) {
         console.log("Signing up a new user");
@@ -162,6 +185,15 @@ module.exports = function (app) {
         });
     });
 
+    app.get("/api/profile", (req,res) => {
+        console.log("-----------~~~~~~~~~~~~-------"); 
+        console.log(req.user._id); 
+        ResultsCard.find({ user: req.user._id }, (err, results) => {
+            console.log(results); 
+            res.send(results); 
+        })
+    })
+
     //to check if animal is already saved in database
     //if/else statement
     //if id already in database, then return to user ("already saved!")
@@ -171,15 +203,16 @@ module.exports = function (app) {
         console.log("saving as new favorite!"); 
         ResultsCard.findOne({ searchid: req.body.searchid }, function (err, result) {
             console.log(result); 
-            if (!result) {
+            if (!result && req.body.searchid) {
                 favorite = new ResultsCard({
                     favorite: req.body.favorite, 
-                    searchid: req.body.searchid
+                    searchid: req.body.searchid,
+                    user: req.user._id
                 })
                 favorite.save(function (err, favorite) {
                     console.log("save"); 
                     if (err) { return (err) }
-                    res.status(status).json(obj);
+                    res.send(favorite);
                 })
             }
             else {

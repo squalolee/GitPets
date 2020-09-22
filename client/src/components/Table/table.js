@@ -5,7 +5,7 @@ function Table(props) {
     return (
         <div>
             <h1>Your Pets: </h1>
-            <table className="table">
+            <table className="table table-hover table-bordered">
                 <thead className="thead-dark">
                     <tr>
                         <th scope="col">Pet</th>

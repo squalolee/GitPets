@@ -164,11 +164,13 @@ module.exports = function (app) {
             postbody: req.body.postbody
         })
         forum.save(function (err, forum) {
-            console.log("There's an error!");
+            console.log("Blog post saved");
             if (err) {
                 return (err)
             }
-            res.json(201, forum)
+            // res.json(201, forum)
+            res.send(forum); 
+
         })
     });
 

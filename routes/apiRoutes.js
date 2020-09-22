@@ -10,6 +10,7 @@ const Login = require("../models/login");
 const passport = require("passport");
 const ResultsCard = require('../models/resultscard');
 const { default: Axios } = require('axios');
+const { Recoverable } = require('repl');
 const LocalStrategy = require('passport-local').Strategy;
 
 passport.use(new LocalStrategy(
@@ -56,10 +57,10 @@ module.exports = function (app) {
             }
             token = JSON.parse(stdout).access_token;
             console.log(token);
-            exec(`curl -H "Authorization: Bearer ${token}" GET https://api.petfinder.com/v2/animals?type=${req.body.pet}&breed=${req.body.breed}&location=${req.body.location}&range=${req.body.range}&gender=${req.body.gender}&age=${req.body.age}&size=${req.body.size}`, (err, stdout, stderr) => {
+            exec(`curl -H "Authorization: Bearer ${token}" GET https://api.petfinder.com/v2/animals?${req.body.pet && "type="+req.body.pet}${req.body.breed && "&breed="+req.body.breed}${req.body.location && "&location="+req.body.location}${req.body.range && "&range"+req.body.range}${req.body.gender && "&gender"+req.body.gender}${req.body.age && "&age"+req.body.age}${req.body.size && "&size"+req.body.size}`, (err, stdout, stderr) => {
                 if (err) {
                     console.log(err);
-                    return;
+                   
                 }
                 res.send(JSON.parse(stdout));
             });
@@ -78,7 +79,7 @@ module.exports = function (app) {
             exec(`curl -H "Authorization: Bearer ${token}" GET https://api.petfinder.com/v2/animals/${req.body.searchid}`, (err, stdout, stderr) => {
                 if (err) {
                     console.log(err);
-                    return;
+                    
                 }
                 res.send(JSON.parse(stdout));
             });
@@ -202,7 +203,7 @@ module.exports = function (app) {
         console.log("saving as new favorite!"); 
         ResultsCard.findOne({ searchid: req.body.searchid }, function (err, result) {
             console.log(result); 
-            if (!result) {
+            if (!result && req.body.searchid) {
                 favorite = new ResultsCard({
                     favorite: req.body.favorite, 
                     searchid: req.body.searchid,

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import { Redirect } from "react-router-dom"; 
+import "./style.css"; 
 
 class Login extends Component {
     state = {

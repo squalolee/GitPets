@@ -1,0 +1,17 @@
+p {
+    font-family: 'Ranchers', regular;
+    font-size: 50px;
+    margin-bottom: 20px; 
+}
+.container {
+    margin-top: 20px; 
+}
+.h1 {
+    font-family: 'Ranchers', regular;
+    font-size: 30px;
+    color: white;
+}
+.form {
+    border-radius: 20%;
+    box-shadow: dimgray;
+}

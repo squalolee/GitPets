@@ -90,10 +90,10 @@ module.exports = function (app) {
         });    
     });
 
-    app.get("/api/test", (req, res) => {
-        console.log("user information: ");
-        console.log(req.user); 
-    })
+    // app.get("/api/test", (req, res) => {
+    //     console.log("user information: ");
+    //     console.log(req.user); 
+    // })
 
     app.post("/api/user", function (req, res) {
         console.log("Signing up a new user");
@@ -157,6 +157,13 @@ module.exports = function (app) {
         });
     // );
 
+    app.get("/api/forum", (req,res) => {
+        console.log("- - - - - - - - - - - -"); 
+        Forum.find({ post: req.forum }, (err, results) => {
+            console.log(results);
+            res.send(results);
+        });
+    });
 
 
     app.post("/api/forum", function (req, res) {

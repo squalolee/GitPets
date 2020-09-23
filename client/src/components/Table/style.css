@@ -3,7 +3,8 @@
     font-family: 'Ranchers', regular;
     color: white; 
 }
-table {
+.table {
     margin-left: 10px;
     margin-right: 10px;
+    margin-bottom: 200px;
 }

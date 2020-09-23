@@ -193,7 +193,7 @@ module.exports = function (app) {
 
     app.get("/api/profile", (req,res) => {
         console.log("-----------~~~~~~~~~~~~-------"); 
-        console.log(req.user._id); 
+        // console.log(req.user._id); 
         ResultsCard.find({ user: req.user._id }, (err, results) => {
             console.log(results); 
             res.send(results); 

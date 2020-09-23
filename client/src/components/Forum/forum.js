@@ -2,15 +2,16 @@ import React, { Component } from "react";
 import Axios from "axios";
 import Posts from "../Posts/posts";
 import Nav from "../Nav/nav";
+import "./style.css"; 
 
 
 class Forum extends Component {
-    constructor() {
-        super();
+    // constructor() {
+    //     super();
 
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    }
+    //     this.handleInputChange = this.handleInputChange.bind(this);
+    //     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    // }
 
     state = {
         name: "",
@@ -20,12 +21,12 @@ class Forum extends Component {
         downvote: 0
     };
 
-    testFunction = () => {
-        Axios.get("/api/profile")
-            .then((data) => {
-                console.log(data);
-            })
-    }
+    // testFunction = () => {
+    //     Axios.get("/api/profile")
+    //         .then((data) => {
+    //             console.log(data);
+    //         })
+    // }
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -64,9 +65,9 @@ class Forum extends Component {
         return (
             <div className="center">
                 <Nav />
-                <button onClick={this.testFunction}>Test</button>
+                {/* <button onClick={this.testFunction}>Test</button> */}
                 <h1>Welcome to the GitPets Blog!</h1>
-                <p>Post your adoption stories, ask questions, or leave us pictures of your furry friends!</p>
+                <p className="p">Post your adoption stories, ask questions, or leave us pictures of your furry friends!</p>
                 <form className="form">
                     <input
                         value={this.state.name}

@@ -22,6 +22,7 @@ class Profile extends Component {
             .then((data) => {
                 console.log(data.data);
                 data.data.map(search => {
+                    console.log("searching for favorites from current user"); 
                     Axios.post("/api/profilesearch", {
                         searchid: search.searchid
                     })

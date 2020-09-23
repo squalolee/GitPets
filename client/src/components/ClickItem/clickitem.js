@@ -69,4 +69,3 @@ class ClickItem extends Component {
 }
 export default ClickItem; 
 
-{/* <i class="fas fa-heart-square"></i>  */}

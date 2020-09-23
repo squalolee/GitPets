@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Axios from "axios";
 import Posts from "../Posts/posts";
 import Nav from "../Nav/nav";
-import "./style.css"; 
+import "./style.css";
 
 
 class Forum extends Component {
@@ -18,7 +18,8 @@ class Forum extends Component {
         posttitle: "",
         postbody: "",
         upvote: 0,
-        downvote: 0
+        downvote: 0,
+        post: []
     };
 
     // testFunction = () => {
@@ -27,6 +28,26 @@ class Forum extends Component {
     //             console.log(data);
     //         })
     // }
+
+    componentWillMount = () => {
+        // Axios.get("/api/forum")
+        //     .then((response) => {
+        //         console.log("component will mount");
+        //         console.log(response);
+        //         let tempArr = this.state.post;
+        //         tempArr.push(response.data.forum);
+        //         this.setState({ post: tempArr });
+        //     })
+        Axios.get("/api/forum")
+            .then((data) => {
+                console.log(data.data); 
+            })
+    }
+
+    componentDidMount = () => {
+        this.state.post && console.log(this.state.post);
+        console.log("component did mount");
+    }
 
     handleInputChange = event => {
         const { name, value } = event.target;

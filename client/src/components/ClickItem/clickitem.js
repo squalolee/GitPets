@@ -3,6 +3,7 @@ import Axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import "./style.css";
 
 class ClickItem extends Component {
 
@@ -31,8 +32,8 @@ class ClickItem extends Component {
     // <i class="far fa-heart"></i>
 
     render() {
-        const element = <FontAwesomeIcon icon={faHeart} data-key={this.props.result.id}/>
-        const element2 = <FontAwesomeIcon icon={faStar} data-key={this.props.result.id}/>
+        const element = <FontAwesomeIcon icon={faHeart} data-key={this.props.result.id} />
+        const element2 = <FontAwesomeIcon icon={faStar} data-key={this.props.result.id} />
         return (
 
             <div>
@@ -44,20 +45,22 @@ class ClickItem extends Component {
                         {
                             this.state.favorite ? element2 : element
                         }
-                        
+
                     </button>
                     <div className="content">
-                        <ul>
-                            <li>
-                                <strong>Name:</strong> {this.props.result.name}
-                            </li>
-                            <li>
-                                <strong>Age:</strong> {this.props.result.age}
-                            </li>
-                            <li>
-                                <strong>Description:</strong> {this.props.result.description}
-                            </li>
-                        </ul>
+                        <a className="card-content" href={this.props.result.url} target="blank">
+                            <ul>
+                                <li>
+                                    <strong>Name:</strong> {this.props.result.name}
+                                </li>
+                                <li>
+                                    <strong>Age:</strong> {this.props.result.age}
+                                </li>
+                                <li>
+                                    <strong>Description:</strong> {this.props.result.description}
+                                </li>
+                            </ul>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -67,5 +70,5 @@ class ClickItem extends Component {
 
 
 }
-export default ClickItem; 
+export default ClickItem;
 

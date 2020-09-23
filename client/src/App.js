@@ -10,6 +10,7 @@ import Forum from "../src/components/Forum/forum";
 import Profile from "./components/Profile/profile";
 import { Link } from 'react-router-dom';
 import Logo from "./logo.png"; 
+import Pawprint from "./pawprint.png"; 
 // import CatFacts from "./components/CatFacts/catfacts"; 
 import "./styles.css"
 
@@ -23,6 +24,9 @@ function App() {
         <div className="text-center">
           <img src={Logo} className="img-fluid" alt="Logo"></img>
         </div>
+      </div>
+      <div className="paw">
+        <img src={Pawprint} className="img" alt="Pawprint"></img>
       </div>
       
         <Switch>

@@ -1,10 +1,10 @@
 import React from "react";
-
+import "./style.css"; 
 
 function Table(props) {
     return (
         <div>
-            <h1>Your Pets: </h1>
+            <h1 className="h1">Your Saved Pets: </h1>
             <table className="table table-hover table-bordered">
                 <thead className="thead-dark">
                     <tr>

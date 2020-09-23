@@ -3,6 +3,7 @@ import Axios from "axios";
 // import Table from "../Table/table"; 
 import ResultsCard from "../ResultsCard/resultscard";
 import Nav from "../Nav/nav"; 
+import "./style.css";
 // import { Redirect } from "react-router-dom"; 
 
 class Form extends Component {
@@ -151,7 +152,7 @@ class Form extends Component {
                  placeholder="Size"
               />
             </div>
-            <button onClick={this.handleFormSubmit}>Submit</button>
+            <button className="btn-primary" onClick={this.handleFormSubmit}>Submit</button>
           </form>
           {/* <form className="form">
             <input

@@ -1,0 +1,9 @@
+.h1 {
+    margin-top: 20px; 
+    font-family: 'Ranchers', regular;
+    color: white; 
+}
+table {
+    margin-left: 10px;
+    margin-right: 10px;
+}

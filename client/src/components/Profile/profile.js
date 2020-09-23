@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Axios from "axios";
 import Nav from "../Nav/nav";
 import Table from "../Table/table";
+import "./style.css"; 
 
 class Profile extends Component {
     state = {
@@ -99,6 +100,7 @@ class Profile extends Component {
                 </p>
                 <Nav />
                 <div className="container updateForm">
+                    <h1 className="h1">Update User Information:</h1>
                     <form className="form">
                         <input
                             value={this.state.firstname}

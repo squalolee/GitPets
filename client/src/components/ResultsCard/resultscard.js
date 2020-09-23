@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./style.css";
-import Axios from "axios";
 import ClickItem from "../ClickItem/clickitem"; 
 
 class ResultsCard extends Component {

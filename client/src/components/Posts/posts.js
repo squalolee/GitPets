@@ -113,18 +113,33 @@ function Posts(props) {
         </thead>
         <tbody>
           {
-            props.data.map(result => {
+            props.data.map(results => {
               return (
                 <tr>
-                  <td>{result.name}</td>
-                  <td>{result.posttitle}</td>
-                  <td>{result.postboby}</td>
-                  <td>{result.upvote}</td>
-                  <td>{result.downvote}</td>
+                  <td>{results.name}</td>
+                  <td>{results.posttitle}</td>
+                  <td>{results.postboby}</td>
+                  <td>{results.upvote}</td>
+                  <td>{results.downvote}</td>
                 </tr>
               );
             })
           }
+         {/* {
+           if (this.props.data) {
+             var posts = this.props.data.map(function(comment) {
+               return (
+                 <tr>
+                   <td>{results.name}</td>
+                  <td>{results.posttitle}</td>
+                  <td>{results.postboby}</td>
+                  <td>{results.upvote}</td>
+                  <td>{results.downvote}</td>
+                 </tr>
+               )
+             })
+           }
+         } */}
         </tbody>
       </table>
     </div>

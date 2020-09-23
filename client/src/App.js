@@ -21,7 +21,7 @@ function App() {
       </header>
       <div className="jumbotron jumbotron-fluid" id="navbar">
         <div className="text-center">
-          <img src={Logo} className="img-fluid" alt="Responsive image"></img>
+          <img src={Logo} className="img-fluid" alt="Logo"></img>
         </div>
       </div>
       {/* <div className="footer">
@@ -35,7 +35,6 @@ function App() {
           <Route exact path="/search" component={Search} />
           <Route exact path="/forum" component={Forum} />
           <Route exact path="/profile" component={Profile} />
-          <Route exact path="/catfacts" component={CatFacts} />
           <Route exact path="/" component={Home} />
           <Route component={NoMatch} />
         </Switch>

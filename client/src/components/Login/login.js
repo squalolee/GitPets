@@ -55,7 +55,7 @@ render() {
             </h2>
             <form className="form">
                 <div className="form-group">
-                    <label for="exampleInputemail1">
+                    <label htmlFor="exampleInputemail1">
                         Email Address: 
                     </label>
                     <input
@@ -65,14 +65,14 @@ render() {
                         type="text"
                         placeholder="Email"
                     />
-                    <small id="emailHelp" class="form-text text-muted">
+                    <small id="emailHelp" className="form-text text-muted">
                         We'll never share your email with anyone else.
                     </small>
                     
                 </div>
 
                 <div className="form-group">
-                    <label for="exampleInputPassword1">
+                    <label htmlFor="exampleInputPassword1">
                         Password:
                     </label>
                     <input

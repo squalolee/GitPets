@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import Axios from "axios";
 import { Redirect } from "react-router-dom"; 
 // import Profile from "../Profile/profile";
+import "./style.css"; 
 
 class Signup extends Component {
     state = {
@@ -104,7 +105,7 @@ class Signup extends Component {
                         />
                     </div>
 
-                    <button onClick={this.handleFormSubmit}>Submit!</button>
+                    <button className="btn-primary" onClick={this.handleFormSubmit}>Submit!</button>
                 </form>
             </div>
         );

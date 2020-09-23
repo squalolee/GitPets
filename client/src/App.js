@@ -24,9 +24,6 @@ function App() {
           <img src={Logo} className="img-fluid" alt="Logo"></img>
         </div>
       </div>
-      {/* <div className="footer">
-        <CatFacts />
-      </div> */}
       
         <Switch>
           <Route exact path="/home" component={Home} />
